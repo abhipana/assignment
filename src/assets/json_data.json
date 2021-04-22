@@ -1,0 +1,162 @@
+[
+  {
+    "type": "header",
+    "subtype": "h3",
+    "label": "User Details",
+    "access": false
+  },
+  {
+    "type": "autocomplete",
+    "required": true,
+    "label": "Region",
+    "className": "form-control",
+    "name": "autocomplete-1611059603903",
+    "access": false,
+    "requireValidOption": false,
+    "values": [
+      {
+        "label": "East",
+        "value": "East",
+        "selected": true
+      },
+      {
+        "label": "West",
+        "value": "West",
+        "selected": false
+      },
+      {
+        "label": "North",
+        "value": "North",
+        "selected": false
+      },
+      {
+        "label": "South",
+        "value": "South",
+        "selected": false
+      }
+    ]
+  },
+  {
+    "type": "text",
+    "required": true,
+    "label": "First Name",
+    "className": "form-control",
+    "name": "text-1611059658640",
+    "access": false,
+    "subtype": "text",
+    "maxlength": 20
+  },
+  {
+    "type": "text",
+    "required": false,
+    "label": "Middle Name",
+    "className": "form-control",
+    "name": "text-1611059681739",
+    "access": false,
+    "subtype": "text",
+    "maxlength": 20
+  },
+  {
+    "type": "text",
+    "required": true,
+    "label": "Last Name",
+    "className": "form-control",
+    "name": "text-1611059681237",
+    "access": false,
+    "subtype": "text",
+    "maxlength": 20
+  },
+  {
+    "type": "date",
+    "required": true,
+    "label": "Date of Birth",
+    "className": "form-control",
+    "name": "date-1611059711432",
+    "access": false
+  },
+  {
+    "type": "number",
+    "required": true,
+    "label": "Age",
+    "className": "form-control",
+    "name": "number-1611059748250",
+    "access": false,
+    "min": 20,
+    "max": 65
+  },
+  {
+    "type": "radio-group",
+    "required": true,
+    "label": "Gender",
+    "inline": true,
+    "name": "radio-group-1611059771791",
+    "access": false,
+    "other": false,
+    "values": [
+      {
+        "label": "Male",
+        "value": "Male",
+        "selected": false
+      },
+      {
+        "label": "Female",
+        "value": "Female",
+        "selected": false
+      }
+    ]
+  },
+  {
+    "type": "select",
+    "required": true,
+    "label": "Country",
+    "className": "form-control",
+    "name": "select-1611059811196",
+    "access": false,
+    "multiple": false,
+    "values": [
+      {
+        "label": "India",
+        "value": "India",
+        "selected": true
+      },
+      {
+        "label": "USA",
+        "value": "USA",
+        "selected": false
+      },
+      {
+        "label": "UK",
+        "value": "UK",
+        "selected": false
+      }
+    ]
+  },
+  {
+    "type": "textarea",
+    "required": false,
+    "label": "Address",
+    "className": "form-control",
+    "name": "textarea-1611059880722",
+    "access": false,
+    "subtype": "textarea",
+    "maxlength": 3000,
+    "rows": 8
+  },
+  {
+    "type": "checkbox-group",
+    "required": true,
+    "label": "Terms and Condition",
+    "toggle": false,
+    "inline": true,
+    "name": "checkbox-group-1611059899082",
+    "access": false,
+    "other": false,
+    "values": [
+      {
+        "label": "I Accept the Terms and Condition",
+        "value": "I Accept the Terms and Condition",
+        "selected": false
+      }
+    ]
+  }
+]

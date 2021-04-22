@@ -1,0 +1,53 @@
+<div class="container text-center">
+<div [innerHTML]="header"></div>
+  <form (ngSubmit)="onSubmit()"  autocomplete="on">
+     <div class="form-group">
+        <label for="firstname"></label>
+        <input type="text" class="form-control" id="firstname"
+               [(ngModel)]="modal" name="name">
+      </div>
+      
+      <div class="form-group">
+        <label for="middlename"></label>
+        <input type="text" class="form-control" id="middlename"
+               [(ngModel)]="modal" name="name">
+      </div>
+
+      <div class="form-group">
+        <label for="lastname"></label>
+        <input type="text" class="form-control" id="lastname"
+               [(ngModel)]="modal" name="name">
+      </div>
+
+      <ejs-datepicker id='datepicker' placeholder='Select a date' [value]='dateValue' [min]='minDate' [max]='maxDate'></ejs-datepicker>
+       <div class="form-group">
+        <label for="age"></label>
+        <input type="number" class="form-control" id="age"
+               [(ngModel)]="age" name="age">
+      </div>
+
+      <div class="form-group" *ngFor="let gender of genderlist">
+        <label for="{{gender.label}}">{{gender.label}}</label>
+        <input type="radio" [(ngModel)]="radioSelected" name="{{gender.label}}" value="{{gender.value}}" (change)="onItemChange(item)"/> 
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select class="form-control" id="country"
+                required
+                [(ngModel)]="countrySelected" name="countrySelected">
+          <option *ngFor="let country of countryList" [value]="country.label">{{country.label}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Address</label>
+            <textarea class="form-control" id="lastname" [(ngModel)]="address" name="address" rows="4" cols="50"></textarea>
+      </div>
+    <div class="form-group">
+        <label for="terms">Terms</label>
+            <input type="checkbox"  [(ngModel)]="terms" id="terms" name="terms">
+      </div>
+      
+  </form>
+</div>
