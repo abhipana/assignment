@@ -1,53 +1,79 @@
-<div class="container text-center">
-<div [innerHTML]="header"></div>
-  <form (ngSubmit)="onSubmit()"  autocomplete="on">
-     <div class="form-group">
-        <label for="firstname"></label>
-        <input type="text" class="form-control" id="firstname"
-               [(ngModel)]="modal" name="name">
-      </div>
-      
-      <div class="form-group">
-        <label for="middlename"></label>
-        <input type="text" class="form-control" id="middlename"
-               [(ngModel)]="modal" name="name">
-      </div>
-
-      <div class="form-group">
-        <label for="lastname"></label>
-        <input type="text" class="form-control" id="lastname"
-               [(ngModel)]="modal" name="name">
-      </div>
-
-      <ejs-datepicker id='datepicker' placeholder='Select a date' [value]='dateValue' [min]='minDate' [max]='maxDate'></ejs-datepicker>
-       <div class="form-group">
-        <label for="age"></label>
-        <input type="number" class="form-control" id="age"
+<div class="container col-md-6 col-sm-12">
+   <div [innerHTML]="header" class="col-12 text-center mt-4"></div>
+   <form  (ngSubmit)="onSubmit()" #formRef="ngForm" name="myform">
+      <div *ngFor="let form_elem of jsonArray;let in=index ">
+      {{formRef[0]|json }}
+         <div class="" [ngSwitch]="form_elem.type">
+            <div class="row">
+               <div *ngSwitchCase="'text'" class="col-md-12 col-sm-12">
+               <label for="{{form_elem.label}}">
+                  {{form_elem.label}}
+                  <app-required *ngIf="form_elem.required"></app-required>
+               </label>
+               <input (keyup)="onlycharacter($event,in)" (focusout)="validation($event,in)" pattern="[A-Za-z]+" maxlength="{{form_elem.maxlength}}" type="text" class="form-control" id="{{form_elem.label}}" required="{{form_elem.required}}"
+               [(ngModel)]="names[in].value" name="{{form_elem.name}}">
+               <p class="text-danger" *ngIf="!formRef[in]"></p>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 col-sm-12" *ngSwitchCase="'date'">
+               <label for="datepicker">
+                  {{form_elem.label}} 
+                  <app-required></app-required>
+               </label>
+               <input type="date" class="form-control" id="{{form_elem.label}}" required="{{form_elem.required}}"
+               [(ngModel)]="date" name="{{form_elem.name}}">
+            </div>
+            <div class="col-md-12 col-sm-12" *ngSwitchCase="'number'">
+               <label for="age">
+                  {{form_elem.label}} 
+                  <app-required></app-required>
+               </label>
+               <input (focusout)="ageValueCheck($event,in)" pattern="[0-9]+" type="number" class="form-control" id="age" required="{{form_elem.required}}"
                [(ngModel)]="age" name="age">
+               <p class="text-danger"></p>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 col-sm-12" *ngSwitchCase="'radio-group'">
+               <div  *ngFor="let gender of form_elem.values">
+                  <label class="mr-4 cursor-poinnter" for="{{gender.label}}">{{gender.label}}</label>
+                  <input class="cursor-poinnter" id="{{gender.label}}" type="radio" [(ngModel)]="radioSelected" name="{{gender.label}}" value="{{gender.value}}" required="{{form_elem.required}}"/> 
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 col-sm-12" *ngSwitchCase="'select'">
+               <label for="country">
+                  {{form_elem.label}} 
+                  <app-required></app-required>
+               </label>
+               <select class="form-control" id="country"
+               required="{{form_elem.required}}"
+               [(ngModel)]="countrySelected" name="countrySelected">
+               <option *ngFor="let country of form_elem.values" [value]="country.label">{{country.label}}</option>
+               </select>
+            </div>
+            <div class="col-md-12 col-sm-12" *ngSwitchCase="'textarea'">
+               <label for="lastname">{{form_elem.label}}</label>
+               <textarea class="form-control" id="lastname" [(ngModel)]="address" name="address" rows="4" cols="10"></textarea>
+            </div>
+         </div>
+         <div class="row">
+            <div class="form-group col-12 text-center" *ngSwitchCase="'checkbox-group'">
+               <label  class="mr-4 cursor-poinnter" for="terms">
+                  {{form_elem.label}}
+                  <app-required></app-required>
+               </label>
+               <input class="cursor-poinnter" type="checkbox"  [(ngModel)]="terms" id="terms" name="terms" required="{{form_elem.required}}">
+            </div>
+         </div>
       </div>
-
-      <div class="form-group" *ngFor="let gender of genderlist">
-        <label for="{{gender.label}}">{{gender.label}}</label>
-        <input type="radio" [(ngModel)]="radioSelected" name="{{gender.label}}" value="{{gender.value}}" (change)="onItemChange(item)"/> 
-      </div>
-
-      <div class="form-group">
-        <label for="country">Country</label>
-        <select class="form-control" id="country"
-                required
-                [(ngModel)]="countrySelected" name="countrySelected">
-          <option *ngFor="let country of countryList" [value]="country.label">{{country.label}}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="lastname">Address</label>
-            <textarea class="form-control" id="lastname" [(ngModel)]="address" name="address" rows="4" cols="50"></textarea>
-      </div>
-    <div class="form-group">
-        <label for="terms">Terms</label>
-            <input type="checkbox"  [(ngModel)]="terms" id="terms" name="terms">
-      </div>
-      
-  </form>
+</div>
+<div class="row">
+<div class="form-group col-12 text-center">
+<button [disabled]="!formRef.form.valid" class="btn btn-primary btn-success">Submit</button>
+</div> 
+</div>
+</form>
 </div>
